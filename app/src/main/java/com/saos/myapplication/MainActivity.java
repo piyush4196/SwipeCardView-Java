@@ -17,6 +17,8 @@ import com.yuyakaido.android.cardstackview.*;
 
 import java.util.ArrayList;
 
+import static com.saos.myapplication.SpotList.getList;
+
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         cardStackView = findViewById(R.id.card_stack_view);
         cardStackLayoutManager = new CardStackLayoutManager(this,this);
 
-        spotList = SpotList.getList();
+        spotList = getList();
         cardStackAdapter = new CardStackAdapter(getApplicationContext(), spotList);
 
         //setupNavigation();
@@ -157,7 +159,16 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void paginate(){
         ArrayList<Spot> old = cardStackAdapter.getItem();
-        ArrayList<Spot> neww = SpotList.getList();
+        ArrayList<Spot> neww = getList();
+        SpotDiffCallback spotDiffCallback = new SpotDiffCallback(old,neww);
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(spotDiffCallback);
+        cardStackAdapter.setItem(neww);
+        result.dispatchUpdatesTo(cardStackAdapter);
+    }
+
+    private void reload() {
+        ArrayList<Spot> old = cardStackAdapter.getItem();
+        ArrayList<Spot> neww = getList();
         SpotDiffCallback spotDiffCallback = new SpotDiffCallback(old,neww);
         DiffUtil.DiffResult result = DiffUtil.calculateDiff(spotDiffCallback);
         cardStackAdapter.setItem(neww);

@@ -28,14 +28,12 @@ class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder>
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(context).inflate(R.layout.test, parent, false);
-        return new ViewHolder(context, view);
+        return new ViewHolder( view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //spot = new Spot(position);
         final String name = listItem.get(position).name;
         String url = listItem.get(position).URL;
         String city = listItem.get(position).city;
@@ -72,7 +70,7 @@ class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder>
          TextView city;
          ImageView image;
 
-        ViewHolder(Context context, View view) {
+        ViewHolder(View view) {
             super(view);
             this.name =  view.findViewById(R.id.item_name);
             this.city =  view.findViewById(R.id.item_city);
