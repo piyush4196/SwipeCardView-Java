@@ -28,7 +28,7 @@ class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder>
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.test, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_spot, parent, false);
         return new ViewHolder( view);
     }
 
@@ -61,9 +61,6 @@ class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder>
     public ArrayList<Spot> getItem(){
         return listItem;
     }
-
-
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
          TextView name;
